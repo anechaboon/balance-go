@@ -5,10 +5,18 @@ import (
 	"balance-go/internal/app/router"
 	"fmt"
 
+	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4" // Use v4 for Echo import
 )
 
 func main() {
+
+	// Load values from .env file
+	err := godotenv.Load()
+	if err != nil {
+		fmt.Println("Error loading .env file")
+	}
+
 	// ... establish database connection
 	db, err := mysql.ConnectToMySQL()
 	if err != nil {

@@ -12,16 +12,9 @@ import (
 
 func ConnectToMySQL() (*gorm.DB, error) {
 
-	// var databaseName string = os.Getenv("DATABASE_NAME")
-	// var clusterName string = os.Getenv("DATABASE_HOST")
+	var databaseName string = os.Getenv("DATABASE_NAME")
 
-	var user string = "root"
-	var password string = "root"
-	var databaseName string = "dhp"
-	var clusterName string = "127.0.0.1"
-	var port string = "3306"
-
-	DSN := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=true&loc=UTC&timeout=30s", user, password, clusterName, port, databaseName)
+	DSN := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=true&loc=UTC&timeout=30s", os.Getenv("DATABASE_USER"), os.Getenv("DATABASE_PASSWORD"), os.Getenv("DATABASE_HOST"), os.Getenv("DATABASE_PORT"), databaseName)
 
 	fmt.Printf("\nlog:DSN: %v \n", DSN)
 

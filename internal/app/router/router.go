@@ -17,6 +17,7 @@ func Register(e *echo.Echo, db *gorm.DB) {
 	// Group user routes
 	userGroup := e.Group("/users")
 	userGroup.GET("", userHandler.GetAllUsers)
+	userGroup.GET("/:id", userHandler.GetUser)
 	// ... other user routes
 
 	// ... define routes for other models (if any)
