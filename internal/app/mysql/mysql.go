@@ -15,7 +15,6 @@ func ConnectToMySQL() (*gorm.DB, error) {
 	var databaseName string = os.Getenv("DATABASE_NAME")
 
 	DSN := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=true&loc=UTC&timeout=30s", os.Getenv("DATABASE_USER"), os.Getenv("DATABASE_PASSWORD"), os.Getenv("DATABASE_HOST"), os.Getenv("DATABASE_PORT"), databaseName)
-
 	fmt.Printf("\nlog:DSN: %v \n", DSN)
 
 	db, err := gorm.Open(mysql.Open(DSN), &gorm.Config{
