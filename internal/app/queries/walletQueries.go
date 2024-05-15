@@ -39,20 +39,6 @@ func (wq *WalletQueries) GetWallet(id int) (models.Wallet, error) {
 	return wallet, nil
 }
 
-func (wq *WalletQueries) StoreWallet_(c echo.Context) (models.Wallet, error) {
-	var wallet models.Wallet
-
-	if err := c.Bind(&wallet); err != nil {
-		return wallet, err
-	}
-
-	if err := wq.db.Save(&wallet).Error; err != nil {
-		return wallet, err
-	}
-
-	return wallet, nil
-}
-
 func (wq *WalletQueries) StoreWallet(c echo.Context) (models.Wallet, error) {
 	var wallet models.Wallet
 	if err := c.Bind(&wallet); err != nil {
@@ -62,10 +48,6 @@ func (wq *WalletQueries) StoreWallet(c echo.Context) (models.Wallet, error) {
 	if err := result.Error; err != nil {
 		return wallet, err
 	}
-	if result.RowsAffected == 0 {
-		fmt.Println("Warning: No rows affected during wallet creation")
-	}
-	fmt.Println("result.RowsAffected[%v]", result.RowsAffected)
 
 	return wallet, nil
 }
